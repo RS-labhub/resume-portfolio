@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohan Sharma</title>
+    <meta name="description" content="Rohan Sharma — Software engineer, open-source contributor.">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- SVG favicon (preferred for modern browsers) -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- Open Graph / Twitter meta -->
+    <meta property="og:title" content="Rohan Sharma">
+    <meta property="og:description" content="Rohan Sharma — Software engineer, open-source contributor.">
+    <meta property="og:image" content="og-image.png">
+    <meta property="og:image:alt" content="RS logo and portfolio preview">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rohan Sharma">
+    <meta name="twitter:description" content="Rohan Sharma — Software engineer, open-source contributor.">
+    <meta name="twitter:image" content="og-image.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neo-yellow': '#FFE600',
+                        'neo-pink': '#FF90E8',
+                        'neo-blue': '#23A6F0',
+                        'neo-green': '#00F0FF',
+                        'neo-offwhite': '#F0F0F0',
+                        'neo-black': '#1a1a1a'
+                    },
+                    fontFamily: {
+                        'clash': ['"Clash Display"', 'sans-serif'],
+                        'space': ['"Space Grotesk"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'neo': '8px 8px 0px 0px rgba(0,0,0,1)',
+                        'neo-sm': '4px 4px 0px 0px rgba(0,0,0,1)',
+                        'neo-hover': '0px 0px 0px 0px rgba(0,0,0,1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            /* Show the native cursor (was hiding it via `cursor: none`) */
+            cursor: auto;
+            overflow-x: hidden;
+            background-color: #F0F0F0;
+        }
+
+        /* Custom Cursor */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        /* Grain Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9000;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 2px black;
+            color: transparent;
+        }
+        
+        ::selection {
+            background: #000;
+            color: #FFE600;
+        }
+    </style>
+</head>
+<body class="font-space text-neo-black">
+
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+    <div class="noise"></div>
+
+    <!-- Nav -->
+    <nav class="fixed top-0 left-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference text-white">
+        <div class="text-2xl font-clash font-bold tracking-tighter">RS-LABHUB</div>
+        <a href="mailto:specialrohansharma200@gmail.com" class="hover:underline font-bold">CONTACT ME</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center relative bg-neo-offwhite pt-20 overflow-hidden">
+        <div class="absolute top-20 right-10 w-32 h-32 bg-neo-pink border-4 border-black rounded-full animate-spin-slow shadow-neo hidden md:block"></div>
+        <div class="absolute bottom-20 left-10 w-24 h-24 bg-neo-blue border-4 border-black rotate-12 shadow-neo hidden md:block"></div>
+
+        <div class="text-center z-10 relative">
+            <div class="inline-block bg-neo-yellow border-4 border-black px-6 py-2 shadow-neo mb-8 rotate-[-2deg] hover:rotate-[2deg] transition-transform">
+                <span class="font-bold text-xl">SOFTWARE ENGINEER</span>
+            </div>
+            <h1 class="text-[12vw] leading-[0.8] font-clash font-bold uppercase tracking-tighter reveal-text">
+                ROHAN<br>SHARMA
+            </h1>
+            <p class="mt-8 text-xl md:text-2xl max-w-2xl mx-auto font-medium px-4">
+                 C++ • Rust • GoLang • Professional Content Creator <br>
+                Based in Bihar, India
+            </p>
+        </div>
+
+        <!-- Infinite Marquee -->
+        <div class="w-full bg-black text-white border-y-4 border-black mt-12 py-4 marquee-container rotate-2">
+            <div class="marquee-content text-4xl font-clash font-bold">
+                 OPEN SOURCE CONTRIBUTOR • DEVFEST AI WINNER • HACK SQUAD WINNER • PERMIT AUTHN CHALLENGE WINNER • SOCIAL WINTER OF CODE • SPHERON SCOUTS • DEVFEST AI WINNER • PERMIT AUTHN CHALLENGE WINNER • HACK SQUAD WINNER • SOCIAL WINTER OF CODE • SPHERON SCOUTS • OPEN SOURCE CONTRIBUTOR •
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-24 px-4 md:px-12 bg-neo-blue border-t-4 border-black">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
+            <div class="md:col-span-4">
+                <h2 class="text-6xl font-clash font-bold text-outline text-white stroke-black" style="-webkit-text-stroke: 2px black;">ABOUT</h2>
+            </div>
+            <div class="md:col-span-8 bg-white border-4 border-black p-8 shadow-neo" id="about-card">
+                <p class="text-xl md:text-2xl leading-relaxed font-medium">
+                    I am a highly qualified software engineer with a passion for <span class="bg-neo-yellow px-1 border-2 border-black">problem-solving</span>. 
+                    Currently seeking to join a company where I can use my knowledge to create innovative solutions. 
+                    A team player driven by high quality work, strong negotiating skills, and business acumen.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="https://github.com/RS-labhub" target="_blank" rel="noopener noreferrer" class="bg-black text-white px-6 py-3 font-bold border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all shadow-[4px_4px_0px_0px_#fff] hover:shadow-neo-sm">GITHUB</a>
+                    <a href="https://rohan-sharma-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="bg-neo-green text-black px-6 py-3 font-bold border-4 border-black shadow-neo-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">MY PORTFOLIO</a>
+
+                    <a href="https://rohan-sharma-portfolio.vercel.app/resume" target="_blank" rel="noopener noreferrer">
+                        <button class="bg-neo-pink px-6 py-3 font-bold border-4 border-black shadow-neo-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">DOWNLOAD RESUME</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section (Timeline) -->
+    <section class="py-24 bg-neo-yellow border-t-4 border-black relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-7xl font-clash font-bold mb-16 text-center">THE GRIND</h2>
+            
+            <div class="grid grid-cols-1 gap-12 relative">
+                <!-- Item 1 -->
+                <div class="exp-card sticky top-24 bg-white border-4 border-black p-8 shadow-neo rotate-1 md:w-3/4 md:mx-auto">
+                    <div class="flex justify-between items-start flex-wrap gap-4">
+                        <div>
+                            <h3 class="text-3xl font-bold font-clash">DEVREL ENGINEER</h3>
+                            <h4 class="text-xl font-bold text-neo-blue">@llmware</h4>
+                        </div>
+                        <span class="bg-black text-white px-3 py-1 font-mono">FULL-TIME</span>
+                    </div>
+                    <p class="mt-4 text-lg border-l-4 border-neo-pink pl-4">
+                        Bridging the gap between developers and AI tools. Creating engaging content, tutorials, and demos to showcase LLMware's capabilities.
+                    </p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="exp-card sticky top-24 bg-white border-4 border-black p-8 shadow-neo rotate-1 md:w-3/4 md:mx-auto">
+                    <div class="flex justify-between items-start flex-wrap gap-4">
+                        <div>
+                            <h3 class="text-3xl font-bold font-clash">DEVEX ENGINEER</h3>
+                            <h4 class="text-xl font-bold text-neo-blue">@tessl</h4>
+                        </div>
+                        <span class="bg-black text-white px-3 py-1 font-mono">FULL-TIME</span>
+                    </div>
+                    <p class="mt-4 text-lg border-l-4 border-neo-pink pl-4">
+                        Making developer experiences seamless and efficient. Building tools, documentation, and resources to enhance developer productivity.
+                    </p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="exp-card sticky top-24 bg-white border-4 border-black p-8 shadow-neo rotate-1 md:w-3/4 md:mx-auto">
+                    <div class="flex justify-between items-start flex-wrap gap-4">
+                        <div>
+                            <h3 class="text-3xl font-bold font-clash">DEVELOPER ADVOCATE</h3>
+                            <h4 class="text-xl font-bold text-neo-blue">@Quira</h4>
+                        </div>
+                        <span class="bg-black text-white px-3 py-1 font-mono">APPRENTICESHIP</span>
+                    </div>
+                    <p class="mt-4 text-lg border-l-4 border-neo-pink pl-4">
+                        Empowering developers by creating resources, hosting events, and fostering communities. Bridging gaps between developers and product teams.
+                    </p>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="exp-card sticky top-32 bg-neo-pink border-4 border-black p-8 shadow-neo -rotate-1 md:w-3/4 md:mx-auto">
+                    <div class="flex justify-between items-start flex-wrap gap-4">
+                        <div>
+                            <h3 class="text-3xl font-bold font-clash">DEVELOPER AMBASSADOR</h3>
+                            <h4 class="text-xl font-bold text-white">@Arcjet</h4>
+                        </div>
+                        <span class="bg-black text-white px-3 py-1 font-mono">AMBASSADOR</span>
+                    </div>
+                    <p class="mt-4 text-lg border-l-4 border-white pl-4">
+                        Providing technical support, promoting tools, and ensuring seamless adoption for enhanced user experiences.
+                    </p>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="exp-card sticky top-40 bg-neo-green border-4 border-black p-8 shadow-neo rotate-1 md:w-3/4 md:mx-auto">
+                    <div class="flex justify-between items-start flex-wrap gap-4">
+                        <div>
+                            <h3 class="text-3xl font-bold font-clash">OPEN SOURCE WARRIOR</h3>
+                            <h4 class="text-xl font-bold">Multiple Orgs</h4>
+                        </div>
+                        <span class="bg-black text-white px-3 py-1 font-mono">WINNER</span>
+                    </div>
+                    <ul class="mt-4 list-disc list-inside font-bold">
+                        <li>DevFest AI (Winner)</li>
+                        <li>Hack Squad (Winner)</li>
+                        <li>Social Winter of Code (Winner)</li>
+                        <li>Spheron Open-Source Scouts (Winner)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-24 bg-black text-white border-t-4 border-white overflow-hidden">
+        <div class="container mx-auto px-4">
+            <h2 class="text-[10vw] font-clash font-bold text-center leading-none mb-12 text-transparent stroke-white" style="-webkit-text-stroke: 2px white;">PROJECTS</h2>
+            
+            <!-- Project Card 1 -->
+            <div class="max-w-5xl mx-auto relative group cursor-pointer">
+                <div class="absolute inset-0 bg-neo-pink translate-x-4 translate-y-4 border-4 border-white"></div>
+                <div class="relative bg-white text-black border-4 border-neo-blue p-8 md:p-16 transition-transform duration-300 group-hover:-translate-y-2 group-hover:-translate-x-2">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <h3 class="text-5xl font-clash font-bold uppercase">RADHIKA</h3>
+                        <span class="bg-neo-blue text-white px-4 py-2 font-bold border-2 border-black mt-2 md:mt-0">NEXT JS</span>
+                    </div>
+                    <p class="text-xl mb-8 max-w-2xl">
+                        A sophisticated AI-powered assistant built with Next.js and powered by multiple LLM providers including Groq, Gemini, OpenAI, and Claude. RADHIKA adapts to different modes of interaction, providing specialized assistance for productivity, wellness, learning, creative tasks, and even acts as your GenZ bestie!
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://radhika-sharma.vercel.app/" target="_blank" rel="noopener noreferrer" class="w-full h-12 bg-black text-white flex items-center justify-center font-bold group-hover:bg-neo-yellow group-hover:text-black transition-colors">
+                            VIEW PROJECT ->
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Project Card 2 -->
+            <div class="max-w-5xl mx-auto relative group cursor-pointer mt-8">
+                <div class="absolute inset-0 bg-neo-pink translate-x-4 translate-y-4 border-4 border-white"></div>
+                <div class="relative bg-white text-black border-4 border-neo-blue p-8 md:p-16 transition-transform duration-300 group-hover:-translate-y-2 group-hover:-translate-x-2">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <h3 class="text-5xl font-clash font-bold uppercase">Radhika's Intelligence Studio</h3>
+                        <span class="bg-neo-blue text-white px-4 py-2 font-bold border-2 border-black mt-2 md:mt-0">NEXT JS</span>
+                    </div>
+                    <p class="text-xl mb-8 max-w-2xl">
+                        A comprehensive AI-powered platform for creating engaging social media content, professional images, contextual comments, detailed summaries, and interactive LinkedIn carousels. Transform your ideas into platform-optimized posts with advanced AI tools and multi-provider support.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://content-generation-platform.vercel.app/" target="_blank" rel="noopener noreferrer" class="w-full h-12 bg-black text-white flex items-center justify-center font-bold group-hover:bg-neo-yellow group-hover:text-black transition-colors">
+                            VIEW PROJECT ->
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Project Card 3 -->
+            <div class="max-w-5xl mx-auto relative group cursor-pointer mt-8">
+                <div class="absolute inset-0 bg-neo-pink translate-x-4 translate-y-4 border-4 border-white"></div>
+                <div class="relative bg-white text-black border-4 border-neo-blue p-8 md:p-16 transition-transform duration-300 group-hover:-translate-y-2 group-hover:-translate-x-2">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <h3 class="text-5xl font-clash font-bold uppercase">Radhika's AI DocManager</h3>
+                        <span class="bg-neo-blue text-white px-4 py-2 font-bold border-2 border-black mt-2 md:mt-0">NEXT JS</span>
+                    </div>
+                    <p class="text-xl mb-8 max-w-2xl">
+                        Radhika's AI DocManager is a document management system where users can create, view, edit, and delete documents based on their roles and document ownership, and AI agents can assist with document management based on their assigned permissions.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/RS-labhub/AI-DocManager" target="_blank" rel="noopener noreferrer" class="w-full h-12 bg-black text-white flex items-center justify-center font-bold group-hover:bg-neo-yellow group-hover:text-black transition-colors">
+                            VIEW PROJECT ->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Education Grid -->
+    <section class="py-24 px-4 bg-neo-offwhite border-t-4 border-black">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Skills -->
+            <div class="border-4 border-black p-8 bg-white shadow-neo hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all">
+                <h3 class="text-4xl font-clash font-bold mb-8 underline decoration-neo-pink decoration-4">ARSENAL</h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="skill-pill bg-neo-yellow border-2 border-black px-4 py-2 font-bold text-lg hover:scale-110 transition-transform">C / C++</span>
+                    <span class="skill-pill bg-neo-pink border-2 border-black px-4 py-2 font-bold text-lg hover:scale-110 transition-transform">RUST</span>
+                    <span class="skill-pill bg-neo-blue border-2 border-black px-4 py-2 font-bold text-lg hover:scale-110 transition-transform">GO LANG</span>
+                    <span class="skill-pill bg-neo-green border-2 border-black px-4 py-2 font-bold text-lg hover:scale-110 transition-transform">FRONTEND</span>
+                    <span class="skill-pill bg-neo-pink border-2 border-black px-4 py-2 font-bold text-lg hover:scale-110 transition-transform">Backend</span>
+                    <span class="skill-pill bg-white border-2 border-black px-4 py-2 font-bold text-lg hover:scale-110 transition-transform">FIGMA</span>
+                    <span class="skill-pill bg-neo-yellow border-2 border-black px-4 py-2 font-bold text-lg hover:scale-110 transition-transform">BLENDER</span>
+                    <span class="skill-pill bg-neo-pink border-2 border-black px-4 py-2 font-bold text-lg hover:scale-110 transition-transform">PUBLIC SPEAKING</span>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="border-4 border-black p-8 bg-neo-green shadow-neo hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all">
+                <h3 class="text-4xl font-clash font-bold mb-8 underline decoration-white decoration-4">ACADEMICS</h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="text-2xl font-bold">NALANDA COLLEGE OF ENGINEERING</h4>
+                        <p class="font-mono text-sm bg-black text-white inline-block px-2">NOV 2022 - JUL 2026</p>
+                        <p class="mt-2 font-medium">B.Tech in Computer Science & Engineering</p>
+                        <p class="text-3xl font-bold mt-2">CGPA: 8.24</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-24 px-4 border-t-4 border-neo-pink">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="text-center md:text-left mb-8 md:mb-0">
+                <h2 class="text-6xl font-clash font-bold text-neo-pink">LET'S TALK</h2>
+                <p class="mt-4 text-gray-400 max-w-md">
+                    Open for opportunities. Seeking a company that suits my interest to create innovative solutions.
+                </p>
+                <p class="mt-4 font-mono text-neo-yellow">(+91) chla ja 💖 day </p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <a href="#" class="border-2 border-white px-8 py-4 hover:bg-white hover:text-black transition-colors font-bold text-center">LINKEDIN</a>
+                <a href="#" class="border-2 border-white px-8 py-4 hover:bg-white hover:text-black transition-colors font-bold text-center">TWITTER</a>
+                <a href="mailto:specialrohansharma200@gmail.com" class="col-span-2 bg-neo-blue border-2 border-neo-blue text-black px-8 py-4 hover:bg-transparent hover:text-white transition-colors font-bold text-center">EMAIL ME</a>
+            </div>
+        </div>
+        <div class="text-center mt-16 font-mono text-xs text-gray-500">
+            NOT MADE BY ROHAN SHARMA © 2025
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lenis for smooth scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Text Reveal
+        gsap.from(".reveal-text", {
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.out",
+            stagger: 0.1
+        });
+
+        // Rotating shapes
+        gsap.to(".animate-spin-slow", {
+            rotation: 360,
+            duration: 10,
+            repeat: -1,
+            ease: "linear"
+        });
+
+        // About Card Slide
+        gsap.from("#about-card", {
+            scrollTrigger: {
+                trigger: "#about-card",
+                start: "top 80%",
+                end: "top 50%",
+                scrub: 1
+            },
+            x: 100,
+            opacity: 0,
+            rotate: 5
+        });
+
+        // Experience Cards Stacking Effect
+        const cards = document.querySelectorAll('.exp-card');
+        cards.forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%",
+                },
+                y: 100,
+                opacity: 0,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            });
+        });
+
+        // Skill Pills floating
+        gsap.from(".skill-pill", {
+            scrollTrigger: {
+                trigger: ".skill-pill",
+                start: "top 85%"
+            },
+            y: 50,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 0.5,
+            ease: "back.out"
+        });
+
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Cursor hover effects
+        const links = document.querySelectorAll('a, button, .exp-card, .skill-pill');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(3)';
+                cursor.style.mixBlendMode = 'normal';
+                cursor.style.backgroundColor = '#FF90E8'; // neo-pink
+                cursor.style.opacity = '0.5';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.mixBlendMode = 'difference';
+                cursor.style.backgroundColor = '#000';
+                cursor.style.opacity = '1';
+            });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="RS logo">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#23A6F0"/>
+      <stop offset="100%" stop-color="#00F0FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="10" fill="#FFE600"/>
+  <rect x="4" y="4" width="56" height="56" rx="8" fill="url(#g)" opacity="0.95"/>
+  <text x="50%" y="50%" font-family="Clash Display, Arial, sans-serif" font-weight="700" font-size="28" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">rs</text>
+</svg>
